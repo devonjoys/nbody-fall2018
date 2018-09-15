@@ -10,7 +10,15 @@ public class Body
 	private String myFileName;
 	
 	
-	// constructor 1; from inputs
+	/**
+	 * first constructor; makes a new Body from inputs
+	 * @param xPos is assigned to myXPos
+	 * @param yPos is assigned to myYPos
+	 * @param xVel is assigned to myXVel
+	 * @param yVel is assigned to myYVel
+	 * @param mass is assigned to myMass
+	 * @param fName is assigned to myFileName
+	 */
 	public Body(double xPos, double yPos, double xVel, 
 			double yVel, double mass, String fName)
 	{
@@ -22,7 +30,11 @@ public class Body
 		myFileName = fName;
 	}
 	
-	// constructor 2; from another body
+	/**
+	 * second constructor; makes a new Body using another body b
+	 * @param b; the new Body is created with instance variables
+	 * equal to the instance variables of b
+	 */
 	public Body(Body b)
 	{
 		myXPos = b.getX();
@@ -33,38 +45,65 @@ public class Body
 		myFileName = b.getName();
 	}
 	
-	// getter methods; next 6 methods
+	/**
+	 * getter method; for x position
+	 * @return returns myXPos
+	 */
 	public double getX()
 	{
 		return myXPos;
 	}
 	
+	/**
+	 * getter method; for y position
+	 * @return returns myYPos
+	 */
 	public double getY()
 	{
 		return myYPos;
 	}
 	
+	/**
+	 * getter method; for x velocity
+	 * @return returns myXVel
+	 */
 	public double getXVel()
 	{
 		return myXVel;
 	}
 	
+	/**
+	 * getter method; for y velocity
+	 * @return returns myYVel
+	 */
 	public double getYVel()
 	{
 		return myYVel;
 	}
 	
+	/**
+	 * getter method; for mass of Body
+	 * @return returns myMass
+	 */
 	public double getMass()
 	{
 		return myMass;
 	}
 	
+	/**
+	 * getter method; for file name
+	 * @return returns myFileName
+	 */
 	public String getName()
 	{
 		return myFileName;
 	}
 
-	// calc distance between this Body and another Body
+	/**
+	 * calc distance between this Body and another Body
+	 * @param b; the Body being compared to this Body
+	 * @return returns distance between this Body and b
+	 */
 	public double calcDistance(Body b)
 	{
 		double bX = b.getX();
@@ -76,7 +115,11 @@ public class Body
 		return dist;
 	}
 	
-	// calc force exerted on this Body by another Body
+	/**
+	 * calc force exerted on this Body by another Body
+	 * @param b; a Body exerting force on this Body 
+	 * @return returns force exerted on this Body by b
+	 */
 	public double calcForceExertedBy(Body b)
 	{
 		double r = this.calcDistance(b);
@@ -88,8 +131,12 @@ public class Body
 			
 	}
 	
-	// calc X and Y components of force exerted on 
-	// this Body by another Body; next 2 methods
+	/**
+	 * calc X component of force exerted on 
+	 * this Body by another Body;
+	 * @param b; a Body exerting force on this Body 
+	 * @return returns X component of the force
+	 */
 	public double calcForceExertedByX(Body b)
 	{
 		double F = this.calcForceExertedBy(b);
@@ -101,6 +148,12 @@ public class Body
 		return Fx;
 	}
 	
+	/**
+	 * calc Y component of force exerted on 
+	 * this Body by another Body;
+	 * @param b; a Body exerting force on this Body 
+	 * @return returns Y component of the force
+	 */
 	public double calcForceExertedByY(Body b)
 	{
 		double F = this.calcForceExertedBy(b);
@@ -112,8 +165,14 @@ public class Body
 		return Fy;
 	}
 	
-	// calc net X and Y components of force exerted on
-	// this Body by array of other Bodies; 2 methods
+	/**
+	 * calc net X component of force exerted on
+	 * this Body by array of other Bodies
+	 * @param bodies; an array of bodies exerting a force
+	 * on this Body
+	 * @return returns the sum of all X forces acting on
+	 * this Body
+	 */
 	public double calcNetForceExertedByX(Body[] bodies)
 	{
 		double netXForce = 0;
@@ -127,6 +186,14 @@ public class Body
 		return netXForce;
 	}
 	
+	/**
+	 * calc net Y component of force exerted on
+	 * this Body by array of other Bodies
+	 * @param bodies; an array of bodies exerting a force
+	 * on this Body
+	 * @return returns the sum of all Y forces acting on
+	 * this Body
+	 */
 	public double calcNetForceExertedByY(Body[] bodies)
 	{
 		double netYForce = 0;
@@ -141,8 +208,13 @@ public class Body
 	}
 	
 	
-	// update position and velocity of this Body from
+	/**
+	 * update position and velocity of this Body from
 	// a given change in time, X force, and Y force
+	 * @param deltaT; change in time for the simulation
+	 * @param xForce; net X force on this Body
+	 * @param yForce; net Y force on this Body
+	 */
 	public void update(double deltaT, double xForce,
 			double yForce)
 	{
@@ -159,7 +231,9 @@ public class Body
 		myYVel = nvy;
 	}
 	
-	// draw this Body
+	/**
+	 * draws this Body
+	 */
 	public void draw()
 	{
 		StdDraw.picture(myXPos, myYPos, "images/"+myFileName);
