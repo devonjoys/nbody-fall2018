@@ -1,6 +1,7 @@
 
 public class Body 
 {
+	// instance variables for Body
 	private double myXPos;
 	private double myYPos;
 	private double myXVel;
@@ -8,6 +9,8 @@ public class Body
 	private double myMass;
 	private String myFileName;
 	
+	
+	// constructor 1; from inputs
 	public Body(double xPos, double yPos, double xVel, 
 			double yVel, double mass, String fName)
 	{
@@ -19,6 +22,7 @@ public class Body
 		myFileName = fName;
 	}
 	
+	// constructor 2; from another body
 	public Body(Body b)
 	{
 		myXPos = b.getX();
@@ -29,6 +33,7 @@ public class Body
 		myFileName = b.getName();
 	}
 	
+	// getter methods; next 6 methods
 	public double getX()
 	{
 		return myXPos;
@@ -59,6 +64,7 @@ public class Body
 		return myFileName;
 	}
 
+	// calc distance between this Body and another Body
 	public double calcDistance(Body b)
 	{
 		double bX = b.getX();
@@ -70,6 +76,7 @@ public class Body
 		return dist;
 	}
 	
+	// calc force exerted on this Body by another Body
 	public double calcForceExertedBy(Body b)
 	{
 		double r = this.calcDistance(b);
@@ -81,6 +88,8 @@ public class Body
 			
 	}
 	
+	// calc X and Y components of force exerted on 
+	// this Body by another Body; next 2 methods
 	public double calcForceExertedByX(Body b)
 	{
 		double F = this.calcForceExertedBy(b);
@@ -103,6 +112,8 @@ public class Body
 		return Fy;
 	}
 	
+	// calc net X and Y components of force exerted on
+	// this Body by array of other Bodies; 2 methods
 	public double calcNetForceExertedByX(Body[] bodies)
 	{
 		double netXForce = 0;
@@ -129,6 +140,9 @@ public class Body
 		return netYForce;
 	}
 	
+	
+	// update position and velocity of this Body from
+	// a given change in time, X force, and Y force
 	public void update(double deltaT, double xForce,
 			double yForce)
 	{
@@ -145,6 +159,7 @@ public class Body
 		myYVel = nvy;
 	}
 	
+	// draw this Body
 	public void draw()
 	{
 		StdDraw.picture(myXPos, myYPos, "images/"+myFileName);
